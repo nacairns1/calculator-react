@@ -125,7 +125,6 @@ html{
 .main-nmb{
     font-size: 2rem;
     overflow:hidden;
-    text-overflow:;
     text-align: right;
     font-weight: 700;
 }
