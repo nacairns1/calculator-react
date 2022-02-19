@@ -1,0 +1,173 @@
+/* Box Model Hack */
+* {
+    box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clear {
+   clear: both;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+body {
+    display: flex;
+    min-height: 80%;
+    justify-content: center;
+    align-content:center;
+}
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+html{
+    background: rgb(238, 238, 238);
+}
+#root {
+    padding: 2%;
+    min-width: 380px;
+    min-height: 790px;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#Calc-Div {
+    min-width: 100%;
+    border: solid pink;
+    padding: 8% 8%;
+    border-radius: .5rem;
+    background: grey;
+}
+
+
+.calc-outline{
+    border: solid lightblue;
+    border-radius: .5rem;
+    display: grid;
+    height: 100%;
+    min-height: 100%;
+
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 1rem 0px; 
+}
+
+
+.answer-cont{
+    padding: .5rem .5rem;
+    text-align: right;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 2fr;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background: rgb(238, 238, 238);
+}
+
+.number-cont{
+    grid-row-start: 5;
+    grid-row-end: 8;
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    background: rgb(191, 243, 243);
+}
+
+.operator-cont{
+    grid-row-start: 3;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    display:grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr;
+    background: rgb(191, 243, 243);
+}
+
+.button{
+    background-color: rgb(127, 187, 187);
+    border-radius: .5rem;
+    border: black solid thick;
+    font-size: 2rem;
+}
+
+
+.button:hover{
+    border-radius: .5rem;
+    background-color:rgb(67, 95, 95);
+    color: rgb(186, 216, 228);
+    font-size: 2rem;
+    border: black solid thick;
+}
+
+
+
+.main-nmb{
+    font-size: 2rem;
+    overflow:hidden;
+    text-overflow:;
+    text-align: right;
+    font-weight: 700;
+}
+
+
+
+.main-nmb h1 {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:wrap;
+    
+}
+
+.alt-nmb {
+    text-align: right;
+    font-size: 1.3rem;
+}
+
+.btn-nmb{
+    border-radius: .5rem;
+    background-color:rgb(128, 177, 177);
+    color: rgb(19, 32, 37);
+    font-size: 2rem;
+    border: black solid thick;
+}
+
+.btn-nmb:hover{
+    border-radius: .5rem;
+    background-color:rgb(67, 95, 95);
+    color: rgb(186, 216, 228);
+    font-size: 2rem;
+    border: black solid thick;
+}
+
+.answer-give{
+    background-color: rgb(241, 167, 182);
+    color: black;
+    border: black solid thick;
+}
+
+.answer-give:hover{
+    background-color: rgb(182, 21, 54);
+    color: rgb(241, 222, 222);
+    border: black solid thick;
+}
