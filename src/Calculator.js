@@ -5,7 +5,6 @@ import OperatorGrid from './Components/OperatorGrid';
 
 
 function Calculator() {
-  
   const [value1, setValue1] = useState('');
   const [value2, setValue2] = useState('');
   const [storedValue, setStoredValue] = useState(false);
@@ -264,7 +263,6 @@ function Calculator() {
     <div className="calc-outline" >
       <Answer value={
         valueToShow.toString().length > 8 && valueToShow != 'Enter a Number' ?
-          parseFloat(Math.abs(valueToShow)) < 10000000 ? parseFloat(valueToShow).toFixed(5) :
           parseFloat(valueToShow).toExponential(3)
           : valueToShow} operator={storedOperator} repeatValue={repeatValueToShow} answerToShow={answerToShow} />
       <NumberGrid addValue={

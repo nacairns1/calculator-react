@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Calculator from './Calculator';
 
-
 ReactDOM.render(
   <React.StrictMode>
     <div id="Calc-Div">
