@@ -12,13 +12,24 @@ function Calculator() {
   const [equalsActive, setEqualsActive] = useState(false);
   const [answer, setAnswer] = useState('');
   const [repeatValue, setRepeatValue] = useState('');
+  const [numDecimal, setNumDecimal] = useState(0);
 
   async function addValue1(value) {
-    await setEqualsActive(false);
-    await setValue1(value1.concat(value));
+    if (value === '.') setNumDecimal(1);
+    if (numDecimal !== 0 && value===".") return;
+    await new Promise((resolve, reject) => {
+      setStoredOperator('');
+      setEqualsActive(false);
+      setValue1(value1.concat(value));
+      resolve('resolved');
+    }).catch('fail');
+    // await setEqualsActive(false);
+    // await setValue1(value1.concat(value));
   }
 
   function addValue2(value) {
+    if (value === '.') setNumDecimal(1);
+    if (numDecimal !== 0 && value===".") return;
     setValue2(value2.concat(value));
   }
 
@@ -44,12 +55,25 @@ function Calculator() {
 
   useEffect(() => {
     setRepeatValue('');
+    setNumDecimal(0);
   }, [storedOperator])
+
   async function calculate(operator) {
+    
+    
+    if (value1 === "" && answer === "" && value2 === "") {
+      setValue1('');
+      setValue2('');
+      setAnswer('');
+      setEqualsActive(false);
+      setStoredValue(false);
+      setStoredOperator('');
+      return new Promise((resolve, reject) => {
+        resolve('');
+      })
+    }
     let _answer = new Promise((resolve, reject) => {
       if (equalsActive) {
-
-        console.log(value1);
         if (value1 === '') {
           setValue1(answer);
           resolve(answer);
@@ -59,7 +83,6 @@ function Calculator() {
 
       }
     });
-
 
     switch (operator) {
       case "C":
@@ -77,14 +100,7 @@ function Calculator() {
 
           let base = parseFloat(value1);
           let extra = (isNaN(parseFloat(value2)) ? 0 : parseFloat(value2));
-
-          console.log(equalsActive);
           if (equalsActive) {
-            console.log("...attempting repeat");
-            console.log(
-              `value1: ${value1} value2: ${value2} answer: ${answer} repeatValue: ${repeatValue}`
-            );
-
             setValue1(answer);
             setValue2(parseFloat(repeatValue));
             base = answer;
@@ -113,12 +129,8 @@ function Calculator() {
           let base = parseFloat(value1);
           let extra = (isNaN(parseFloat(value2)) ? 0 : parseFloat(value2));
 
-          console.log(equalsActive);
           if (equalsActive) {
-            console.log("...attempting repeat");
-            console.log(
-              `value1: ${value1} value2: ${value2} answer: ${answer} repeatValue: ${repeatValue}`
-            );
+
 
             setValue1(answer);
             setValue2(parseFloat(repeatValue));
@@ -148,9 +160,7 @@ function Calculator() {
           let base = parseFloat(value1);
           let extra = (isNaN(parseFloat(value2)) ? 1 : parseFloat(value2));
 
-          console.log(equalsActive);
           if (equalsActive) {
-            console.log("...attempting repeat");
 
 
             setValue1(answer);
@@ -181,7 +191,6 @@ function Calculator() {
           let base = parseFloat(value1);
           let extra = (isNaN(parseFloat(value2)) ? 1 : parseFloat(value2));
 
-          console.log(equalsActive);
           if (equalsActive) {
             setValue1(answer);
             setValue2(parseFloat(repeatValue));
@@ -214,10 +223,6 @@ function Calculator() {
           if (storedValue) {
             resolve(Math.sqrt(answer));
           }
-
-          // if (isNaN(Math.sqrt(parseFloat(value1)))) {
-          //   resolve(0);
-          // }
           setEqualsActive(true);
           if (!isNaN(parseFloat(value1))) {
             resolve(Math.sqrt(parseFloat(value1)));
@@ -232,7 +237,6 @@ function Calculator() {
 
         }).then((response) => {
           return new Promise((resolve) => {
-            console.log(response);
             resolve(response)
           })
         });
@@ -240,33 +244,44 @@ function Calculator() {
       default:
         break;
 
-    }
-    console.log(_answer.finally(() => { console.log('answer function finished') }));
-
+    };
     return _answer;
   }
 
   const valueToShow =
-    equalsActive ? answer : value1 === '' ? 'Enter a Number' : value1
+    equalsActive ? answer : value1 === '' ? '. . .' : value1
 
   const repeatValueToShow =
     equalsActive ?
-      repeatValue.toString().length > 8 ?
-        parseFloat(repeatValue).toExponential(3) : repeatValue
-      : value2.toString().length > 8 ?
-        parseFloat(value2).toExponential(3) : value2
+      repeatValue.toString().length > 9 ?
+        parseFloat(repeatValue).toExponential(5) : repeatValue
+      : value2.toString().length > 9 ?
+        parseFloat(value2).toExponential(5) : value2
 
   const answerToShow =
     equalsActive ? "Ans" : '';
+  
+  const displayedNumber = (numberStr) => {
+    console.log('slicing...')
+
+    return numberStr.toString().slice(0, 9);
+  }
 
   return (
     <div className="calc-outline" >
       <Answer value={
-        valueToShow.toString().length > 8 && valueToShow != 'Enter a Number' ?
-          parseFloat(valueToShow).toExponential(3)
-          : valueToShow} operator={storedOperator} repeatValue={repeatValueToShow} answerToShow={answerToShow} />
+        parseFloat(Math.abs(valueToShow)) < .00001 && parseFloat(Math.abs(valueToShow)) !== 0 ?
+          parseFloat(valueToShow).toExponential(5) :
+        valueToShow.toString().length > 8 && valueToShow !== '. . .' ?
+            parseFloat(Math.abs(valueToShow)) <= 999999999 ?
+              parseFloat(Math.abs(valueToShow)) < .00001 ?
+                parseFloat(valueToShow).toExponential(5) :
+            displayedNumber(valueToShow) :
+          parseFloat(valueToShow).toExponential(5)
+            : parseFloat(valueToShow) > 99999999
+              ? parseFloat(valueToShow).toExponential(5) : valueToShow} operator={storedOperator} repeatValue={repeatValueToShow} answerToShow={answerToShow} />
       <NumberGrid addValue={
-        valueToShow.length > 8 && valueToShow !== 'Enter a Number' ? () => { } : !storedValue ? addValue1 :
+        valueToShow.length > 8 && valueToShow !== '. . .' ? () => { } : !storedValue ? addValue1 :
           value2.length > 8 ? () => { } : addValue2
       } storedValue={storedValue} getFinalAnswer={getFinalAnswer} />
       <OperatorGrid chooseOperator={calculate} />

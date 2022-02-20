@@ -1,8 +1,8 @@
-import {React, useEffect} from 'react'
+import {React} from 'react'
 
 const Answer = (props) => {
 
-    console.log(props.answerToShow.length);
+    console.log(props.answerToShow.toString().length);
 
     return (
         <div className='answer-cont'>

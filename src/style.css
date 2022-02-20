@@ -1,0 +1,323 @@
+/* Box Model Hack */
+* {
+    box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clear {
+   clear: both;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+body {
+    display: flex;
+    min-height: fit-content;
+    justify-content: center;
+    align-items: center;
+    height: 88vh;
+    
+}
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+html{
+    background: rgba(158, 158, 158, 0.59) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#root {
+    padding: 8% 0 0 0;
+    min-width: 350px;
+    min-height: 750px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Calc-Div {
+    width: 100%;
+    border: solid black thick;
+    padding: 8% 8%;
+    border-radius: .5rem;
+    background: lightblue;
+    min-height: fit-content;
+    min-width: fit-content;
+}
+
+
+
+.calc-outline{
+    
+    border: solid lightblue;
+    border-radius: .5rem;
+    display: grid;
+    height: 90%;
+    justify-items: center;
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    gap: 1rem 0px; 
+}
+
+
+.answer-cont{
+    height: 100%;
+    width: 100%;
+    padding: .5rem .5rem;
+    text-align: right;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 2fr;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background: rgb(238, 238, 238);
+    border-radius: .5rem;
+    border: solid black .4rem;
+    gap: 0;
+}
+
+.number-cont{
+    height: 100%;
+    max-width: 100%;
+    gap: 0;
+    grid-row-start: 5;
+    grid-row-end: 8;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    width: 100%;
+
+}
+
+.operator-cont{
+    height: 100%;
+    width: 100%;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display:grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr;
+
+}
+
+.btn{
+    height: 100%;
+    width: 100%;
+    transition-property: background-color, color;
+    transition-duration: .25s;
+    background-color: rgb(127, 187, 187);
+    border-radius: .5rem;
+    border: thick black solid ;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.btn-hover{
+    height: 100%;
+    width: 100%;
+    transition-property: background-color, color ;
+    transition-duration: .20s;
+    border-radius: .5rem;
+    background-color:rgb(115, 161, 161);
+    color: rgb(167, 188, 197);
+    font-size: 2rem;
+    font-weight: 700;
+    border: black solid thick;
+    color:rgba(0, 0, 0, 0.85);
+}
+.btn-clicked{
+    height: 100%;
+    width: 100%;
+    transition-property: background-color, color ;
+    -webkit-box-shadow: inset 0px 0px .33rem .33rem #00000010; 
+    box-shadow: inset 0px 0px .33rem .33rem #00000010;
+    transition-duration: .10s;
+    border-radius: .5rem;
+    background-color:rgb(96, 124, 124);
+    color:rgba(19, 19, 19, 0.4);
+    font-size: 2rem;
+    font-weight: 700;
+    border: black solid thick;
+}
+
+.main-nmb{
+    size: 100%;
+    font-size: 2rem;
+    overflow:hidden;
+    text-align: right;
+    font-weight: 700;
+}
+
+
+.main-nmb h1 {
+    text-shadow: 1px 1px rgba(128, 128, 128, 0.295);
+    height: 100%;
+    font-weight: 700;
+}
+
+.alt-nmb {
+    text-align: right;
+    font-size: 1.3rem;
+}
+
+.btn-nmb{
+    height: 100%;
+    width: 100%;
+    transition-property: background-color, color;
+    transition-duration: .25s;
+    background-color: rgb(127, 187, 187);
+    transition-duration: .15s;
+    border-radius: .5rem;
+    border: black solid thick;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.btn-nmb-hover{
+    height: 100%;
+    width: 100%;
+    transition-property: background-color, color ;
+    transition-duration: .20s;
+    border-radius: .5rem;
+    background-color:rgb(115, 161, 161);
+    color: rgb(167, 188, 197);
+    font-size: 2rem;
+    border: black solid thick;
+    color:rgba(0, 0, 0, 0.85);
+    font-weight: 700;
+}
+
+.btn-nmb-clicked{
+    height: 100%;
+    width: 100%;
+    transition-property: background-color, color ;
+    -webkit-box-shadow: inset 0px 0px .33rem .33rem #00000010; 
+    box-shadow: inset 0px 0px .33rem .33rem #00000010;
+    transition-duration: .10s;
+    border-radius: .5rem;
+    background-color:rgb(96, 124, 124);
+    color:rgba(19, 19, 19, 0.6);
+    font-size: 2rem;
+    border: black solid thick;
+    font-weight: 700;
+
+}
+
+
+.answer-give{
+    height: 100%;
+    width: 100%;
+    transition-property: background-color, color;
+    font-size: 2rem;
+    background-color: rgb(241, 167, 182);
+    color: black;
+    border: black solid thick;
+    transition-duration: .25s;
+    border-radius: .5rem;
+    border: black solid thick;
+    font-weight: 700;
+    
+}
+
+.answer-give-hover{
+    height: 100%;
+    width: 100%;
+    transition-property: background-color, color;
+    font-size: 2rem;
+    background-color: rgb(209, 134, 149);
+    color: rgba(0, 0, 0, 0.8);
+    border: black solid thick;
+    
+    transition-duration: .25s;
+    border-radius: .5rem;
+    border: black solid thick;
+    font-weight: 700;
+}
+
+.answer-give-clicked{
+    height: 100%;
+    width: 100%;
+    transition-property: background-color, color, box-shadow;
+    -webkit-box-shadow: inset 0px 0px .33rem .33rem #00000010; 
+    box-shadow: inset 0px 0px .33rem .33rem #00000010;
+    transition-duration: .10s;
+    background-color: rgb(182, 97, 115);
+    color: rgba(0, 0, 0, 0.5);
+    border: black solid thick;
+    border-radius: .5rem;
+    border: black solid thick;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) { 
+    .answer-give-hover{
+        height: 100%;
+        width: 100%;
+        transition-property: background-color, color;
+        font-size: 2rem;
+        background-color: rgb(241, 167, 182);
+        color: black;
+        border: black solid thick;
+        transition-duration: .25s;
+        border-radius: .5rem;
+        border: black solid thick;
+        font-weight: 700;
+    }
+    .btn-nmb-hover{
+        height: 100%;
+        width: 100%;
+        transition-property: background-color, color;
+        transition-duration: .25s;
+        background-color: rgb(127, 187, 187);
+        transition-duration: .15s;
+        border-radius: .5rem;
+        border: black solid thick;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    .btn-hover{
+        height: 100%;
+        width: 100%;
+        transition-property: background-color, color;
+        transition-duration: .25s;
+        background-color: rgb(127, 187, 187);
+        border-radius: .5rem;
+        border: thick black solid ;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    
+
+  
+
+}

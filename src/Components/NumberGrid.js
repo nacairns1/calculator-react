@@ -15,7 +15,7 @@ const NumberGrid = (props) => {
           <Button className="btn-nmb" value="9" execFunc={props.addValue}/>
           <Button className="btn-nmb" value="0" execFunc={props.addValue}/>
           <Button className="btn-nmb" value="." execFunc={props.addValue} />
-          <Button className="btn-nmb answer-give" value="=" execFunc={props.getFinalAnswer}/>
+          <Button className="answer-give" value="=" execFunc={props.getFinalAnswer}/>
     </div>
   )
 }
