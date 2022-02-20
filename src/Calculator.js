@@ -59,7 +59,7 @@ function Calculator() {
   }, [storedOperator])
 
   async function calculate(operator) {
-    
+    setNumDecimal(0);
     
     if (value1 === "" && answer === "" && value2 === "") {
       setValue1('');
